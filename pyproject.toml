@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "megapip"
+version = "0.1.0"
+description = "A minimal wrapper around pip"
+authors = [{ name="Nguyen Phuc", email="phonghanhphucnguyen@gmail.com" }]
+license = {text="MIT"}
+readme = "README.md"
+requires-python = ">=3.7"
+
+[project.scripts]
+megapip = "megapip.cli:main"
