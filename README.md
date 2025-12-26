@@ -2,33 +2,38 @@
 
 Project demo đo tốc độ mạng LAN (ping / download / upload) với UI cải tiến và đồ thị thời gian thực.
 
-Yêu cầu
+License
+-------
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+Requirements
 - Node.js 16+
 - Máy chạy server và client phải ở cùng mạng LAN; server lắng nghe port mặc định 3000.
 
-Cách chạy
-1. Cài dependencies:
+Quickstart
+1. Clone repo:
+   git clone https://github.com/NguyenPhuc530/NguyenPhuc.git
+   cd NguyenPhuc
+2. Install dependencies:
    npm install
-2. Chạy server:
+3. Start server:
    npm start
-3. Trên máy client trong cùng mạng, mở trình duyệt tới:
-   http://<IP-của-server>:3000
-   (Nếu bạn truy cập từ chính máy server, có thể mở http://localhost:3000)
+4. From a browser on a client machine in the same LAN open:
+   http://<IP-of-server>:3000
+   (If testing from the server machine, you can open http://localhost:3000)
 
-Hướng dẫn dùng
-- Nhập IP:port của server vào ô "Server" nếu truy cập từ máy client khác (ví dụ `192.168.1.10:3000`).
-- Chọn thời lượng (giây), số kết nối song song (parallel) và kích thước chunk (KB).
-- Bấm "Bắt đầu" để chạy test. Kết quả tải lên/tiền về hiển thị bằng Mbps theo giây trên đồ thị.
+Usage
+- Enter the server IP:port in the "Server" field when accessing the UI from another machine (eg. `192.168.1.10:3000`). Leave empty to use the same host.
+- Configure test duration, number of parallel connections and chunk size.
+- Click "Bắt đầu" to start the test. Results are shown in Mbps on the live chart.
 
-Ghi chú & cải tiến có thể thêm
-- Hiện tại dùng WebSocket để stream binary frames (download từ server, upload từ client).
-- Có thể cải thiện:
-  - Tính trung bình/percentile nhiều lần test (repeat).
-  - Thống kê jitter và packet loss (phù hợp UDP/WebRTC).
-  - Thay WebSocket bằng WebRTC DataChannel để tránh một số overhead hoặc để đo UDP-like path.
-  - Thêm chế độ server CLI headless để test tự động.
-  - Thêm chế độ đa luồng TCP riêng biệt (nhiều TCP sockets) cho độ chính xác cao hơn.
+Contributing
+- Feel free to open issues or pull requests.
+- Suggested improvements: add auto-discovery (mDNS/UDP), WebRTC mode, CSV export, persistent history, or CI checks.
 
-An toàn & lưu ý
-- Đây là bản demo: không lưu file upload, server chỉ đếm bytes.
-- Tránh chạy kích thước/chunks quá lớn trên máy yếu; điều chỉnh `parallel` và `chunkSize` nếu thấy lag.
+Security & Notes
+- This is a demo: the server does not persist uploads; it only counts bytes for the test.
+- Avoid excessively large chunk sizes or many parallel connections on low-power machines.
+
+Contact
+- Repository: https://github.com/NguyenPhuc530/NguyenPhuc
