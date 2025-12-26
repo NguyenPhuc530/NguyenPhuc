@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LAN Speed Test</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Chart.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>LAN Speed Test</h1>
+
+    <div class="controls">
+      <label>Server (IP hoặc host): <input id="serverInput" type="text" value="" placeholder="Ví dụ: 192.168.1.10:3000 (để trống = cùng host)"></label>
+      <label>Thời lượng (giây): <input id="duration" type="number" value="5" min="1" max="60"></label>
+      <label>Kết nối song song: <input id="parallel" type="number" value="4" min="1" max="16"></label>
+      <label>Kích thước chunk gửi (KB): <input id="chunkSize" type="number" value="64" min="8" max="512"></label>
+      <div class="buttons">
+        <button id="startBtn">Bắt đầu</button>
+        <button id="stopBtn" disabled>Dừng</button>
+      </div>
+    </div>
+
+    <div class="results">
+      <div class="result-row">
+        <div><strong>Ping:</strong> <span id="ping">—</span> ms</div>
+        <div><strong>Download:</strong> <span id="download">—</span> Mbps</div>
+        <div><strong>Upload:</strong> <span id="upload">—</span> Mbps</div>
+      </div>
+      <canvas id="chart" height="160"></canvas>
+    </div>
+
+    <details>
+      <summary>Ghi chú</summary>
+      <ul>
+        <li>Để đo LAN chính xác, chạy server trên một máy trong cùng mạng và nhập IP:port vào ô Server (hoặc để trống nếu chạy client cùng máy server).</li>
+        <li>Bài test download: server gửi dữ liệu qua WebSocket; client tính throughput.</li>
+        <li>Bài test upload: client gửi dữ liệu qua WebSocket; server đếm bytes và trả về tóm tắt.</li>
+      </ul>
+    </details>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
